@@ -4,9 +4,12 @@ SCRIPT  := scripts/frontmatter_to_csv.py
 
 SUBVAULTS := module person faculty level reading-list book paper
 
-.PHONY: all clean
+.PHONY: all init clean
 
 all: $(addprefix $(DATASET)/,$(addsuffix .csv,$(SUBVAULTS)))
+
+init: requirements.txt
+	pip install -q -r requirements.txt
 
 $(DATASET):
 	mkdir -p $@
